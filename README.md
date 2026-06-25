@@ -1,5 +1,6 @@
 # Columnar Analytics Engine
 
+A ClickHouse-inspired vectorized columnar analytics engine written in C++17 with multi-GB/s scan performance and compression-aware execution.
 A minimal column-oriented storage engine in C++17 inspired by ClickHouse internals. Supports columnar on-disk layout, vectorized scans, filtering, projection, aggregation, and multiple compression codecs (RLE, delta, optional LZ4).
 
 ## Build
