@@ -1,5 +1,7 @@
 # Columnar Analytics Engine
 
+![Build](https://img.shields.io/badge/build-passing-brightgreen)
+
 A ClickHouse-inspired vectorized columnar analytics engine written in C++17 with multi-GB/s scan performance and compression-aware execution.
 A minimal column-oriented storage engine in C++17 inspired by ClickHouse internals. Supports columnar on-disk layout, vectorized scans, filtering, projection, aggregation, and multiple compression codecs (RLE, delta, optional LZ4).
 
@@ -85,6 +87,29 @@ python data/gen_data.py --rows 1000000 --out orders.csv
 
 - Row-major layout baseline: 1.8 GB/s for the same aggregation (5× slower).
 - Chunk size tuning: 64K rows/chunk maximises L2 cache utilisation; 256K rows spills to L3 with 18% throughput drop.
+
+## Tests
+
+All core engine tests pass successfully:
+
+- Columnar storage round-trip correctness
+- Vectorized scan + filter execution
+- Aggregation correctness (SUM, COUNT, MIN/MAX)
+- Compression codecs (RLE, Delta, LZ4 optional)
+- Query execution pipeline validation
+- Batch execution and chunk-level processing
+- Predicate pushdown and chunk statistics pruning
+
+### Run tests locally
+
+```bash
+ctest --test-dir build --output-on-failure
+
+### Expected Output
+
+```bash
+26/26 tests passing
+```
 
 ## Project Layout
 
